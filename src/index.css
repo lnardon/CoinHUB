@@ -1,0 +1,28 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100vw;
+  height: 100vh;
+  background-color: #131313;
+  font-family: "Nunito", sans-serif;
+}
+
+#root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logoDiv {
+  width: 100%;
+  margin: 2rem 0rem;
+}
+
+.logo {
+  width: 60px;
+}
