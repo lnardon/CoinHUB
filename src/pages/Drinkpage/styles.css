@@ -1,0 +1,43 @@
+.drinkpageContainer {
+  width: 90%;
+  max-width: 700px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.drinkpageHeader {
+  display: flex;
+  width: 100%;
+  margin-top: 3rem;
+}
+
+.drinkCover {
+  width: 100px;
+  border: 10px solid;
+  border-image-slice: 1;
+  border-width: 4px;
+  border-image-source: linear-gradient(to bottom, #ff0844, #ffba35);
+  border-radius: 5px;
+  margin-right: 1rem;
+}
+
+.drinkpageHeaderText {
+  width: 100%;
+  height: 100%;
+}
+
+.drinkTitle {
+  font-size: 2.5rem;
+  line-height: 2.5rem;
+  font-weight: 600;
+  color: #ffba35;
+}
+
+.drinkCategory {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 400;
+  color: #ff6e49;
+}
