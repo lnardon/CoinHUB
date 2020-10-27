@@ -26,3 +26,22 @@ body {
 .logo {
   width: 60px;
 }
+
+.loader {
+  width: 75px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  animation: loader 1.5s ease infinite;
+}
+
+@keyframes loader {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1.5);
+  }
+}

@@ -88,7 +88,13 @@ function Coinpage(props) {
             })}
           </div>
         </div>
-      ) : null}
+      ) : (
+        <img
+          src={require("../../assets/logo.png")}
+          alt="Loader"
+          className="loader"
+        />
+      )}
     </>
   );
 }
