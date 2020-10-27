@@ -18,12 +18,21 @@ function Coinpage(props) {
       let parsedResponse = await response.json();
       setCoinInfo(parsedResponse);
       console.log(parsedResponse);
+
+      response = await fetch(
+        `${process.env.REACT_APP_API_URL}tweets/${
+          window.location.pathname.split("/")[2]
+        }`
+      );
+      parsedResponse = await response.json();
+      setTweets(parsedResponse);
+      console.log(parsedResponse);
     })();
   }, []);
 
   return (
     <>
-      {coinInfo ? (
+      {coinInfo && tweets ? (
         <div className="coinpageContainer">
           <div className="logoDiv">
             <img
@@ -62,15 +71,21 @@ function Coinpage(props) {
 
           <div className="tweetsSection">
             <h2 className="subtitle">Latest Tweets</h2>
-            {/* {tweets.map((tweet) => {
+            {tweets.map((tweet) => {
               return (
                 <div className="tweetCard">
-                  <img src="" alt="Avatar" />
-                  <h4 className="tweetName"></h4>
-                  <p className="tweetContent"></p>
+                  <img
+                    className="tweetAvatar"
+                    src={tweet.user.profile_image_url_https}
+                    alt="Avatar"
+                  />
+                  <div className="tweetText">
+                    <h4 className="tweetName">{tweet.user.screen_name}</h4>
+                    <p className="tweetContent">{tweet.text}</p>
+                  </div>
                 </div>
               );
-            })} */}
+            })}
           </div>
         </div>
       ) : null}
