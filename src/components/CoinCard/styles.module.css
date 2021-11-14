@@ -22,6 +22,7 @@
   height: 35px;
   background-color: #38b236;
   border-radius: 0rem 0.5rem 0rem 0.5rem;
+  box-shadow: 0px 0px 7px 1px rgb(0 0 0 / 10%);
 }
 
 .decrease {
@@ -32,6 +33,29 @@
   height: 35px;
   background-color: #b23636;
   border-radius: 0rem 0.5rem 0rem 0.5rem;
+  box-shadow: 0px 0px 7px 1px rgb(0 0 0 / 10%);
+}
+
+.name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.price {
+  margin-bottom: 2rem;
+}
+
+.variation {
+  position: absolute;
+  width: 75px;
+  height: 35px;
+  top: 0.35rem;
+  right: 0;
+  color: #f1f1f1;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
 }
 
 .prevPricesContainer {
@@ -39,4 +63,28 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
+}
+
+.variationDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.variationDivRight {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.data {
+  font-size: 1.25rem;
 }

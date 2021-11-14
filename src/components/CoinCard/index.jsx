@@ -21,17 +21,17 @@ function CoinCard({
       <div>
         <img className={styles.logo} src={icon} alt="Coin logo" />
         <h1 className={styles.name}>{name}</h1>
-        <h2 className={styles.price}>{price}</h2>
+        <h2 className={styles.price}>$ {price}</h2>
         <h2 className={styles.variation}>{variation.toFixed(2)}%</h2>
       </div>
       <div className={styles.prevPricesContainer}>
-        <div>
-          <h4>24h low</h4>
-          <h3>{lowestPrice}</h3>
+        <div className={styles.variationDiv}>
+          <h4 className={styles.label}>24h low</h4>
+          <h3 className={styles.data}>{lowestPrice}</h3>
         </div>
-        <div>
-          <h4>24h high</h4>
-          <h3>{highestPrice}</h3>
+        <div className={styles.variationDivRight}>
+          <h4 className={styles.label}>24h high</h4>
+          <h3 className={styles.data}>{highestPrice}</h3>
         </div>
       </div>
     </div>
