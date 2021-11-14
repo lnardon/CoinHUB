@@ -1,6 +1,6 @@
 # [CHUB (Coin HUB)](https://chub-crypto.web.app/ "Homepage")
 
-CHUB (Coin HUB) is the perfect place for you to find market info about cryptocurrencies created by NRD Software
+CHUB (Coin HUB) is the perfect place for you to find market info about cryptocurrencies.
 
 <p align="center">
   <img src="./demo.gif">
@@ -16,3 +16,4 @@ CHUB (Coin HUB) is the perfect place for you to find market info about cryptocur
 - Nodejs
 - Github Action for CI/CD
 - Firebase Hosting
+- CoinGecko API
