@@ -10,12 +10,14 @@ function Homepage() {
   const [query, setQuery] = useState(null);
   const [coins, setCoins] = useState([]);
 
-  useEffect(async () => {
-    const raw = await fetch(
-      `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false`
-    );
-    const parsed = await raw.json();
-    setCoins(parsed);
+  useEffect(() => {
+    (async () => {
+      const raw = await fetch(
+        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false`
+      );
+      const parsed = await raw.json();
+      setCoins(parsed);
+    })();
   }, []);
 
   const fetchCoins = async (page = 1) => {
