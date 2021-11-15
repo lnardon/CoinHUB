@@ -9,10 +9,11 @@
   margin: 1rem;
   cursor: pointer;
   box-shadow: 0px 0px 13px 11px rgba(255, 255, 255, 0.1);
+  animation: appear 0.3s ease-in forwards;
 }
 
 .container:hover {
-  animation: cardHover 0.4s ease forwards;
+  animation: cardHover 0.3s ease-out forwards;
 }
 
 .logo {
@@ -92,6 +93,15 @@
 
 .data {
   font-size: 1.25rem;
+}
+
+@keyframes appear {
+  from {
+    transform: scale(1.05);
+  }
+  to {
+    transform: scale(1);
+  }
 }
 
 @keyframes cardHover {
