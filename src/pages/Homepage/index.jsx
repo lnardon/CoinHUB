@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import InfiniteScroll from "react-infinite-scroller";
 
 import CoinCard from "../../components/CoinCard";
 import "./styles.css";
@@ -10,13 +11,20 @@ function Homepage() {
   const [coins, setCoins] = useState(null);
 
   useEffect(() => {
-    (async () => {
-      const raw = await fetch(process.env.REACT_APP_TOP_COINS_API_URL);
-      const parsed = await raw.json();
-      setCoins(parsed);
-      console.log(parsed);
-    })();
+    fetchCoins();
   }, []);
+
+  const fetchCoins = async (page = 1) => {
+    const raw = await fetch(
+      `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=${page}&sparkline=false`
+    );
+    const parsed = await raw.json();
+    if (coins) {
+      setCoins([...coins, ...parsed]);
+    } else {
+      setCoins(parsed);
+    }
+  };
 
   return (
     <div className="homepageContainer">
@@ -38,23 +46,25 @@ function Homepage() {
           }
         }}
       />
-      <div className="listContainer">
-        {coins &&
-          coins.map((coin, index) => {
-            return (
-              <CoinCard
-                key={index}
-                icon={coin.image}
-                name={coin.name}
-                price={coin.current_price}
-                variation={coin.price_change_percentage_24h}
-                coinId={coin.id}
-                lowestPrice={coin.low_24h}
-                highestPrice={coin.high_24h}
-              />
-            );
-          })}
-      </div>
+      <InfiniteScroll pageStart={0} loadMore={fetchCoins} hasMore>
+        <div className="listContainer">
+          {coins &&
+            coins.map((coin, index) => {
+              return (
+                <CoinCard
+                  key={index}
+                  icon={coin.image}
+                  name={coin.name}
+                  price={coin.current_price}
+                  variation={coin.price_change_percentage_24h}
+                  coinId={coin.id}
+                  lowestPrice={coin.low_24h}
+                  highestPrice={coin.high_24h}
+                />
+              );
+            })}
+        </div>
+      </InfiniteScroll>
     </div>
   );
 }
