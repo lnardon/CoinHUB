@@ -12,7 +12,7 @@ function Homepage() {
 
   useEffect(() => {
     fetchCoins();
-  }, []);
+  }, [fetchCoins]);
 
   const fetchCoins = async (page = 1) => {
     const raw = await fetch(
