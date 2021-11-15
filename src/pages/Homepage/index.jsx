@@ -20,7 +20,7 @@ function Homepage() {
     } else {
       setCoins(parsed);
     }
-  });
+  }, []);
 
   useEffect(() => {
     fetchCoins();
