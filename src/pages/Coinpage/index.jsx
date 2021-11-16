@@ -32,23 +32,44 @@ function Coinpage() {
       response = await fetch(
         `https://api.coingecko.com/api/v3/coins/${
           window.location.pathname.split("/")[2]
-        }/market_chart?vs_currency=usd&days=1&interval=hourly/`
+        }/market_chart?vs_currency=usd&days=7/`
       );
       parsedResponse = await response.json();
-      setPriceHistory(parsedResponse.prices.map((data) => data[1]));
+      console.log(parsedResponse);
+      setPriceHistory(parsedResponse.prices.map((data) => data));
     })();
   }, []);
 
+  const fetchMarketData = async (days) => {
+    let response = await fetch(
+      `https://api.coingecko.com/api/v3/coins/${
+        window.location.pathname.split("/")[2]
+      }/market_chart?vs_currency=usd&days=${days}/`
+    );
+    let parsedResponse = await response.json();
+    setPriceHistory(
+      parsedResponse.prices
+        .slice(
+          parsedResponse.prices.length - 24,
+          parsedResponse.prices.length - 1
+        )
+        .map((arr) => {
+          arr[0] = msToDate(arr[0]);
+          return arr;
+        })
+    );
+  };
+
   const data = {
-    labels: priceHistory.slice(0, 23).map((e) => msToDate(e)),
+    labels: priceHistory.map((arr) => arr[0]),
     datasets: [
       {
-        data: priceHistory.slice(0, 23),
+        data: priceHistory,
         fill: true,
         backgroundColor:
           coinInfo?.market_data.price_change_percentage_24h > 0
             ? "rgb(23, 255, 100)"
-            : "rgb(255, 23, 100)",
+            : "rgba(255, 25, 50,1)",
         borderColor: "rgba(0, 0, 0, 0.1)",
         pointRadius: 3,
         tension: 0.5,
@@ -117,6 +138,32 @@ function Coinpage() {
           <div className="marketDataSection">
             <h2 className="subtitle">Market Data</h2>
             {priceHistory.length > 1 && <Line data={data} options={options} />}
+            <div className="graphPeriod">
+              <button
+                className="changePeriodBtn"
+                onClick={() => fetchMarketData(1)}
+              >
+                24h
+              </button>
+              <button
+                className="changePeriodBtn"
+                onClick={() => fetchMarketData(7)}
+              >
+                7d
+              </button>
+              <button
+                className="changePeriodBtn"
+                onClick={() => fetchMarketData(15)}
+              >
+                15d
+              </button>
+              <button
+                className="changePeriodBtn"
+                onClick={() => fetchMarketData(30)}
+              >
+                30d
+              </button>
+            </div>
           </div>
 
           <div className="tweetsSection">

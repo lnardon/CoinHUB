@@ -49,6 +49,18 @@
   margin-bottom: 2rem;
 }
 
+.changePeriodBtn {
+  border: none;
+  width: 75px;
+  padding: 0.5rem 0rem;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  font-weight: 700;
+  outline: none;
+  cursor: pointer;
+  margin: 0.5rem;
+}
+
 .tweetsSection {
   width: 100%;
 }

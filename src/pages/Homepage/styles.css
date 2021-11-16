@@ -26,3 +26,8 @@
   justify-content: center;
   flex-wrap: wrap;
 }
+
+.loader {
+  align-self: center;
+  /* width: 100%; */
+}

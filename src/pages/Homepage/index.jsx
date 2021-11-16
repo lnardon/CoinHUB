@@ -3,12 +3,14 @@ import { useHistory } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroller";
 
 import CoinCard from "../../components/CoinCard";
+import loader from "../../assets/loader.svg";
 import "./styles.css";
 
 function Homepage() {
   const history = useHistory();
   const [query, setQuery] = useState(null);
   const [coins, setCoins] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     (async () => {
@@ -17,15 +19,18 @@ function Homepage() {
       );
       const parsed = await raw.json();
       setCoins(parsed);
+      setIsLoading(false);
     })();
   }, []);
 
   const fetchCoins = async (page = 1) => {
+    setIsLoading(true);
     const raw = await fetch(
       `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=${page}&sparkline=false`
     );
     const parsed = await raw.json();
     setCoins([...coins, ...parsed]);
+    setIsLoading(false);
   };
 
   return (
@@ -66,6 +71,7 @@ function Homepage() {
               );
             })}
         </div>
+        {isLoading && <img className="loader" src={loader} />}
       </InfiniteScroll>
     </div>
   );
