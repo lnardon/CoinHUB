@@ -71,7 +71,7 @@ function Homepage() {
               );
             })}
         </div>
-        {isLoading && <img className="loader" src={loader} />}
+        {isLoading && <img className="loader" src={loader} alt="Loading..." />}
       </InfiniteScroll>
     </div>
   );
