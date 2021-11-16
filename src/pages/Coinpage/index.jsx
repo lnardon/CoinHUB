@@ -1,12 +1,42 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import { Line } from "react-chartjs-2";
 
 import "./styles.css";
 
-function Coinpage(props) {
+function Coinpage() {
   const history = useHistory();
   const [coinInfo, setCoinInfo] = useState(undefined);
   const [tweets, setTweets] = useState(undefined);
+  const data = {
+    labels: ["", "", "", "", "", ""],
+    datasets: [
+      {
+        data: [12, 19, 3, 5, 2, 3],
+        fill: true,
+        backgroundColor: "rgb(255, 99, 132)",
+        borderColor: "rgba(255, 99, 132, 0.2)",
+        pointRadius: 0,
+        tension: 0.3,
+      },
+    ],
+  };
+
+  const options = {
+    scales: {
+      y: {
+        beginAtZero: true,
+        ticks: {
+          display: false,
+        },
+      },
+    },
+    plugins: {
+      legend: {
+        display: false,
+      },
+    },
+  };
 
   useEffect(() => {
     (async () => {
@@ -26,6 +56,14 @@ function Coinpage(props) {
       );
       parsedResponse = await response.json();
       setTweets(parsedResponse);
+      console.log(parsedResponse);
+
+      response = await fetch(
+        `https://api.coingecko.com/api/v3/coins/${
+          window.location.pathname.split("/")[2]
+        }/market_chart?vs_currency=usd&days=7&interval=daily/`
+      );
+      parsedResponse = await response.json();
       console.log(parsedResponse);
     })();
   }, []);
@@ -67,6 +105,7 @@ function Coinpage(props) {
 
           <div className="marketDataSection">
             <h2 className="subtitle">Market Data</h2>
+            <Line data={data} options={options} />
           </div>
 
           <div className="tweetsSection">
