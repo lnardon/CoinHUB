@@ -1,31 +1,72 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useHistory } from "react-router-dom";
 import { Line } from "react-chartjs-2";
 
+import { msToDate } from "../../utils/date";
 import "./styles.css";
 
 function Coinpage() {
   const history = useHistory();
   const [coinInfo, setCoinInfo] = useState(undefined);
-  const [tweets, setTweets] = useState(undefined);
+  const [priceHistory, setPriceHistory] = useState([]);
+  const [tweets, setTweets] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      let response = await fetch(
+        `${process.env.REACT_APP_API_URL}coin/allinfo/${
+          window.location.pathname.split("/")[2]
+        }`
+      );
+      let parsedResponse = await response.json();
+      setCoinInfo(parsedResponse);
+
+      response = await fetch(
+        `${process.env.REACT_APP_API_URL}tweets/${
+          window.location.pathname.split("/")[2]
+        }`
+      );
+      parsedResponse = await response.json();
+      setTweets(parsedResponse);
+
+      response = await fetch(
+        `https://api.coingecko.com/api/v3/coins/${
+          window.location.pathname.split("/")[2]
+        }/market_chart?vs_currency=usd&days=1&interval=hourly/`
+      );
+      parsedResponse = await response.json();
+      setPriceHistory(parsedResponse.prices.map((data) => data[1]));
+    })();
+  }, []);
+
   const data = {
-    labels: ["", "", "", "", "", ""],
+    labels: priceHistory.slice(0, 23).map((e) => msToDate(e)),
     datasets: [
       {
-        data: [12, 19, 3, 5, 2, 3],
+        data: priceHistory.slice(0, 23),
         fill: true,
-        backgroundColor: "rgb(255, 99, 132)",
-        borderColor: "rgba(255, 99, 132, 0.2)",
-        pointRadius: 0,
-        tension: 0.3,
+        backgroundColor:
+          coinInfo?.market_data.price_change_percentage_24h > 0
+            ? "rgb(23, 255, 100)"
+            : "rgb(255, 23, 100)",
+        borderColor: "rgba(0, 0, 0, 0.1)",
+        pointRadius: 3,
+        tension: 0.5,
       },
     ],
   };
 
   const options = {
+    label: false,
     scales: {
+      x: {
+        startAtZero: false,
+        ticks: {
+          display: false,
+        },
+      },
       y: {
-        beginAtZero: true,
+        startAtZero: false,
         ticks: {
           display: false,
         },
@@ -37,36 +78,6 @@ function Coinpage() {
       },
     },
   };
-
-  useEffect(() => {
-    (async () => {
-      let response = await fetch(
-        `${process.env.REACT_APP_API_URL}coin/allinfo/${
-          window.location.pathname.split("/")[2]
-        }`
-      );
-      let parsedResponse = await response.json();
-      setCoinInfo(parsedResponse);
-      console.log(parsedResponse);
-
-      response = await fetch(
-        `${process.env.REACT_APP_API_URL}tweets/${
-          window.location.pathname.split("/")[2]
-        }`
-      );
-      parsedResponse = await response.json();
-      setTweets(parsedResponse);
-      console.log(parsedResponse);
-
-      response = await fetch(
-        `https://api.coingecko.com/api/v3/coins/${
-          window.location.pathname.split("/")[2]
-        }/market_chart?vs_currency=usd&days=7&interval=daily/`
-      );
-      parsedResponse = await response.json();
-      console.log(parsedResponse);
-    })();
-  }, []);
 
   return (
     <>
@@ -105,7 +116,7 @@ function Coinpage() {
 
           <div className="marketDataSection">
             <h2 className="subtitle">Market Data</h2>
-            <Line data={data} options={options} />
+            {priceHistory.length > 1 && <Line data={data} options={options} />}
           </div>
 
           <div className="tweetsSection">
