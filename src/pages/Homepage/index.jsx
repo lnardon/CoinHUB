@@ -4,6 +4,7 @@ import InfiniteScroll from "react-infinite-scroller";
 
 import CoinCard from "../../components/CoinCard";
 import loader from "../../assets/loader.svg";
+import search from "../../assets/search.png";
 import "./styles.css";
 
 function Homepage() {
@@ -33,6 +34,10 @@ function Homepage() {
     setIsLoading(false);
   };
 
+  const handleSearch = () => {
+    history.push(`/coin/${query.split(" ").join("-").toLowerCase()}`);
+  };
+
   return (
     <div className="homepageContainer">
       <div className="logoDiv">
@@ -42,17 +47,22 @@ function Homepage() {
           className="logo"
         />
       </div>
-      <input
-        type="text"
-        className="searchbar"
-        placeholder="Search..."
-        onChange={(e) => setQuery(e.target.value)}
-        onKeyPress={(e) => {
-          if (e.key === "Enter") {
-            history.push(`/coin/${query}`);
-          }
-        }}
-      />
+      <div className="searchDiv">
+        <input
+          type="text"
+          className="searchbar"
+          placeholder="Search..."
+          onChange={(e) => setQuery(e.target.value)}
+          onKeyPress={(e) => {
+            if (e.key === "Enter") {
+              handleSearch();
+            }
+          }}
+        />
+        <button className="searchBtn" onClick={handleSearch}>
+          <img src={search} alt="Search Icon" className="searchIcon" />
+        </button>
+      </div>
       <InfiniteScroll pageStart={0} loadMore={fetchCoins} hasMore>
         <div className="listContainer">
           {coins &&
