@@ -1,17 +1,18 @@
 {
   "name": "coinhub",
   "version": "1.0.0",
+  "author": "github.com/lnardon",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "firebase": "^7.24.0",
+    "framer-motion": "^4.1.17",
     "react": "^16.13.1",
-    "react-chartjs-2": "^3.3.0",
-    "chart.js": "^3.6.0",
     "react-dom": "^16.13.1",
     "react-infinite-scroller": "^1.2.4",
+    "react-intersection-observer": "^8.32.5",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1"
   },

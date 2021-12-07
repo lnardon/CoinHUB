@@ -12,8 +12,7 @@ CHUB (Coin HUB) is the perfect place for you to find market info about cryptocur
 
 - React
 - CSS
-- Twitter API
-- Nodejs
+- Framer Motion
 - Github Action for CI/CD
 - Firebase Hosting
 - CoinGecko API
