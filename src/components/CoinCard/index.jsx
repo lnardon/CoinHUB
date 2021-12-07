@@ -15,15 +15,13 @@ function CoinCard({
   coinId = "",
   lowestPrice = "",
   highestPrice = "",
+  openCoinCard,
 }) {
   return (
     <AnimatedOnView
       variants={variants}
       renderProps={() => (
-        <div
-          className={styles.container}
-          onClick={() => (window.location.href = `/coin/${coinId}`)}
-        >
+        <div className={styles.container} onClick={() => openCoinCard(coinId)}>
           <span
             className={variation > 0 ? styles.increase : styles.decrease}
           ></span>
