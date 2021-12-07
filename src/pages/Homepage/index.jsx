@@ -1,17 +1,19 @@
-import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useState, useEffect, useRef } from "react";
 import InfiniteScroll from "react-infinite-scroller";
 
 import CoinCard from "../../components/CoinCard";
+import Modal from "../../components/Modal";
 import loader from "../../assets/loader.svg";
 import search from "../../assets/search.png";
 import "./styles.css";
 
 function Homepage() {
-  const history = useHistory();
+  const pageRef = useRef();
   const [query, setQuery] = useState(null);
   const [coins, setCoins] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [openModal, setOpenModal] = useState(false);
+  const [modalInfo, setModalInfo] = useState(null);
 
   useEffect(() => {
     (async () => {
@@ -34,12 +36,18 @@ function Homepage() {
     setIsLoading(false);
   };
 
-  const handleSearch = () => {
-    history.push(`/coin/${query.split(" ").join("-").toLowerCase()}`);
+  const handleSearch = () => {};
+
+  const handleCoinModal = async (id) => {
+    const raw = await fetch(`https://api.coingecko.com/api/v3/coins/${id}`);
+    const parsed = await raw.json();
+    console.log(parsed);
+    setModalInfo(parsed);
+    setOpenModal(true);
   };
 
   return (
-    <div className="homepageContainer">
+    <div className="homepageContainer" ref={pageRef}>
       <div className="logoDiv">
         <img
           src={require("../../assets/logo.png")}
@@ -63,6 +71,18 @@ function Homepage() {
           <img src={search} alt="Search Icon" className="searchIcon" />
         </button>
       </div>
+      {openModal && (
+        <Modal
+          name={modalInfo.name}
+          icon={modalInfo.image.small}
+          isOpen={openModal}
+          price={modalInfo.market_data.current_price.usd}
+          variation={modalInfo.market_data.price_change_percentage_24h}
+          coinId={modalInfo.id}
+          lowestPrice={modalInfo.market_data.low_24h.usd}
+          highestPrice={modalInfo.market_data.high_24h.usd}
+        />
+      )}
       <InfiniteScroll pageStart={0} loadMore={fetchCoins} hasMore>
         <div className="listContainer">
           {coins &&
@@ -77,6 +97,8 @@ function Homepage() {
                   coinId={coin.id}
                   lowestPrice={coin.low_24h}
                   highestPrice={coin.high_24h}
+                  openCoinCard={handleCoinModal}
+                  onClick={() => alert("SKRT")}
                 />
               );
             })}
