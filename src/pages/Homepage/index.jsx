@@ -9,7 +9,6 @@ import "./styles.css";
 
 function Homepage() {
   const pageRef = useRef();
-  const [query, setQuery] = useState(null);
   const [coins, setCoins] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [openModal, setOpenModal] = useState(false);
@@ -55,7 +54,7 @@ function Homepage() {
           className="logo"
         />
       </div>
-      <div className="searchDiv">
+      {/* <div className="searchDiv">
         <input
           type="text"
           className="searchbar"
@@ -70,7 +69,7 @@ function Homepage() {
         <button className="searchBtn" onClick={handleSearch}>
           <img src={search} alt="Search Icon" className="searchIcon" />
         </button>
-      </div>
+      </div> */}
       {openModal && (
         <Modal
           name={modalInfo.name}
