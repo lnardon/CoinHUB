@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^7.1.2",
     "firebase": "^7.24.0",
     "framer-motion": "^4.1.17",
+    "fsevents": "^2.3.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-infinite-scroller": "^1.2.4",
