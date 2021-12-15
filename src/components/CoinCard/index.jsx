@@ -11,7 +11,7 @@ function CoinCard({
   icon = "",
   name = "",
   price = 0,
-  variation,
+  variation = 0,
   coinId = "",
   lowestPrice = "",
   highestPrice = "",
@@ -29,7 +29,9 @@ function CoinCard({
             <img className={styles.logo} src={icon} alt="Coin logo" />
             <h1 className={styles.name}>{name}</h1>
             <h2 className={styles.price}>$ {price}</h2>
-            <h2 className={styles.variation}>{variation.toFixed(2)}%</h2>
+            <h2 className={styles.variation}>
+              {variation ? variation?.toFixed(2) : 0}%
+            </h2>
           </div>
           <div className={styles.prevPricesContainer}>
             <div className={styles.variationDiv}>
