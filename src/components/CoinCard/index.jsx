@@ -16,6 +16,7 @@ function CoinCard({
   lowestPrice = "",
   highestPrice = "",
   openCoinCard,
+  position = null,
 }) {
   return (
     <AnimatedOnView
@@ -25,6 +26,7 @@ function CoinCard({
           <span
             className={variation > 0 ? styles.increase : styles.decrease}
           ></span>
+          <span className={styles.position}>#{position ? position : "-"}</span>
           <div>
             <img className={styles.logo} src={icon} alt="Coin logo" />
             <h1 className={styles.name}>{name}</h1>

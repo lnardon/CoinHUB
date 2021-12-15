@@ -4,7 +4,6 @@ import InfiniteScroll from "react-infinite-scroller";
 import CoinCard from "../../components/CoinCard";
 import Modal from "../../components/Modal";
 import loader from "../../assets/loader.svg";
-import search from "../../assets/search.png";
 import "./styles.css";
 
 function Homepage() {
@@ -34,8 +33,6 @@ function Homepage() {
     setCoins([...coins, ...parsed]);
     setIsLoading(false);
   };
-
-  const handleSearch = () => {};
 
   const handleCoinModal = async (id) => {
     const raw = await fetch(`https://api.coingecko.com/api/v3/coins/${id}`);
@@ -96,6 +93,7 @@ function Homepage() {
                   coinId={coin.id}
                   lowestPrice={coin.low_24h}
                   highestPrice={coin.high_24h}
+                  position={coin.market_cap_rank}
                   openCoinCard={handleCoinModal}
                   onClick={() => alert("SKRT")}
                 />
