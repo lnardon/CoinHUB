@@ -1,6 +1,10 @@
 import React from "react";
 import Modal from "react-modal";
+
+import closeIcon from "../../assets/close.png";
 import styles from "./styles.module.css";
+
+Modal.setAppElement("#root");
 
 function ModalBase({
   name,
@@ -11,21 +15,23 @@ function ModalBase({
   highestPrice,
   marketData,
   isOpen,
+  closeModal,
 }) {
-  const [modalIsOpen, setIsOpen] = React.useState(isOpen);
-
-  function closeModal() {
-    setIsOpen(false);
-  }
-
   return (
     <Modal
-      isOpen={modalIsOpen}
+      isOpen={isOpen}
       onRequestClose={closeModal}
       className={styles.modalBg}
+      shouldCloseOnOverlayClick={true}
     >
       <div className={styles.modalContent}>
-        <div>
+        <img
+          className={styles.closeBtn}
+          src={closeIcon}
+          alt="Close"
+          onClick={closeModal}
+        />
+        <div className={styles.modalHeader}>
           <img className={styles.logo} src={icon} alt="Coin logo" />
           <h1 className={styles.name}>{name}</h1>
           <h2 className={styles.price}>$ {price}</h2>
@@ -33,12 +39,12 @@ function ModalBase({
         </div>
         <div className={styles.prevPricesContainer}>
           <div className={styles.variationDiv}>
-            <h4 className={styles.label}>24h low</h4>
-            <h3 className={styles.data}>{lowestPrice}</h3>
-          </div>
-          <div className={styles.variationDivRight}>
             <h4 className={styles.label}>24h high</h4>
             <h3 className={styles.data}>{highestPrice}</h3>
+          </div>
+          <div className={styles.variationDiv}>
+            <h4 className={styles.label}>24h low</h4>
+            <h3 className={styles.data}>{lowestPrice}</h3>
           </div>
         </div>
       </div>

@@ -72,6 +72,7 @@ function Homepage() {
           name={modalInfo.name}
           icon={modalInfo.image.small}
           isOpen={openModal}
+          closeModal={() => setOpenModal(false)}
           price={modalInfo.market_data.current_price.usd}
           variation={modalInfo.market_data.price_change_percentage_24h}
           coinId={modalInfo.id}
