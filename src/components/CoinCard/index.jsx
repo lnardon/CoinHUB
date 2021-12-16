@@ -30,7 +30,7 @@ function CoinCard({
           <div>
             <img className={styles.logo} src={icon} alt="Coin logo" />
             <h1 className={styles.name}>{name}</h1>
-            <h2 className={styles.price}>$ {price}</h2>
+            <h2 className={styles.price}>U$ {price}</h2>
             <h2 className={styles.variation}>
               {variation ? variation?.toFixed(2) : 0}%
             </h2>
