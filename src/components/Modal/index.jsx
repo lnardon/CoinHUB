@@ -1,5 +1,7 @@
 import React from "react";
 import Modal from "react-modal";
+import { dataFormatter } from "../../utils/dataFormatter";
+import { Properties } from "./properties";
 
 import closeIcon from "../../assets/close.png";
 import styles from "./styles.module.css";
@@ -33,19 +35,38 @@ function ModalBase({
         />
         <div className={styles.modalHeader}>
           <img className={styles.logo} src={icon} alt="Coin logo" />
-          <h1 className={styles.name}>{name}</h1>
-          <h2 className={styles.price}>$ {price}</h2>
-          <h2 className={styles.variation}>{variation?.toFixed(2)}%</h2>
+          <div>
+            <h1 className={styles.name}>{name}</h1>
+            <h2 className={styles.price}>{dataFormatter(price, "currency")}</h2>
+          </div>
+          <h2 className={styles.variation}>
+            {dataFormatter(variation, "percentage")}
+          </h2>
         </div>
+
         <div className={styles.prevPricesContainer}>
           <div className={styles.variationDiv}>
             <h4 className={styles.label}>24h high</h4>
-            <h3 className={styles.data}>{highestPrice}</h3>
+            <h3 className={styles.data}>
+              {dataFormatter(highestPrice, "currency")}
+            </h3>
           </div>
           <div className={styles.variationDiv}>
             <h4 className={styles.label}>24h low</h4>
-            <h3 className={styles.data}>{lowestPrice}</h3>
+            <h3 className={styles.data}>
+              {dataFormatter(lowestPrice, "currency")}
+            </h3>
           </div>
+          {Properties.map((p) => {
+            return (
+              <div className={styles.variationDiv}>
+                <h4 className={styles.label}>{p.label}</h4>
+                <h3 className={styles.data}>
+                  {dataFormatter(marketData[p.data][p.currency], p.type)}
+                </h3>
+              </div>
+            );
+          })}
         </div>
       </div>
     </Modal>

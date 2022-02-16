@@ -1,5 +1,6 @@
 import React from "react";
 import AnimatedOnView from "../AnimatedOnView";
+import { dataFormatter } from "../../utils/dataFormatter";
 import styles from "./styles.module.css";
 
 const variants = {
@@ -30,7 +31,7 @@ function CoinCard({
           <div>
             <img className={styles.logo} src={icon} alt="Coin logo" />
             <h1 className={styles.name}>{name}</h1>
-            <h2 className={styles.price}>U$ {price}</h2>
+            <h2 className={styles.price}>{dataFormatter(price, "currency")}</h2>
             <h2 className={styles.variation}>
               {variation ? variation?.toFixed(2) : 0}%
             </h2>
