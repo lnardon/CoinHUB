@@ -51,22 +51,7 @@ function Homepage() {
           className="logo"
         />
       </div>
-      {/* <div className="searchDiv">
-        <input
-          type="text"
-          className="searchbar"
-          placeholder="Search..."
-          onChange={(e) => setQuery(e.target.value)}
-          onKeyPress={(e) => {
-            if (e.key === "Enter") {
-              handleSearch();
-            }
-          }}
-        />
-        <button className="searchBtn" onClick={handleSearch}>
-          <img src={search} alt="Search Icon" className="searchIcon" />
-        </button>
-      </div> */}
+
       {openModal && (
         <Modal
           name={modalInfo.name}
@@ -78,6 +63,7 @@ function Homepage() {
           coinId={modalInfo.id}
           lowestPrice={modalInfo.market_data.low_24h.usd}
           highestPrice={modalInfo.market_data.high_24h.usd}
+          marketData={modalInfo.market_data}
         />
       )}
       <InfiniteScroll pageStart={0} loadMore={fetchCoins} hasMore>

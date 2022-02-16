@@ -57,5 +57,7 @@
 }
 
 .loader {
+  width: 100%;
   align-self: center;
+  justify-self: center;
 }
