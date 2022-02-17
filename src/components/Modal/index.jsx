@@ -35,7 +35,7 @@ function ModalBase({
         />
         <div className={styles.modalHeader}>
           <img className={styles.logo} src={icon} alt="Coin logo" />
-          <div>
+          <div className={styles.headerInfo}>
             <h1 className={styles.name}>{name}</h1>
             <h2 className={styles.price}>{dataFormatter(price, "currency")}</h2>
           </div>
@@ -59,10 +59,10 @@ function ModalBase({
           </div>
           {Properties.map((p) => {
             return (
-              <div className={styles.variationDiv}>
+              <div className={styles.variationDiv} key={p.label}>
                 <h4 className={styles.label}>{p.label}</h4>
                 <h3 className={styles.data}>
-                  {dataFormatter(marketData[p.data][p.currency], p.type)}
+                  {dataFormatter(marketData[p?.data][p?.currency], p.type)}
                 </h3>
               </div>
             );
