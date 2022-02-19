@@ -10,6 +10,21 @@ export const Properties = [
     type: "currency",
   },
   {
+    label: "Price change 7 days",
+    data: "price_change_percentage_7d",
+    type: "percentage",
+  },
+  {
+    label: "Price change 30 days",
+    data: "price_change_percentage_30d",
+    type: "percentage",
+  },
+  {
+    label: "Price change 200 days",
+    data: "price_change_percentage_200d",
+    type: "percentage",
+  },
+  {
     label: "All time high change",
     data: "ath_change_percentage",
     type: "percentage",
