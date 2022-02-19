@@ -17,31 +17,40 @@
   width: 100%;
   max-width: 600px;
   margin: 2rem;
-  padding: 3rem 3rem;
-  background-color: #fafafa;
+  padding: 2rem 2rem;
+  background-color: #131313;
   border-radius: 0.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   animation: openModal 0.4s ease-out forwards;
+  color: #fafafa;
 }
 
 .closeBtn {
   position: absolute;
   width: 1.25rem;
-  top: 2rem;
-  right: 2rem;
+  top: 1.5rem;
+  right: 1.5rem;
   cursor: pointer;
   outline: none;
+  filter: invert(100%);
+  margin-bottom: 0.5rem;
 }
 
 .modalHeader {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
   width: 100%;
   margin: 2rem 0rem;
+  background-color: #f1f1f1;
+  padding: 1rem;
+  border-radius: 0.25rem;
+  color: #131313;
+  border-left: 0.5rem solid rgb(55, 0, 255);
 }
 
 .headerInfo {
@@ -53,22 +62,43 @@
   width: 5rem;
 }
 
+.variation {
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  color: #fafafa;
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.variationUp {
+  background-color: #38b236;
+}
+
+.variationDown {
+  background-color: red;
+}
+
 .prevPricesContainer {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   width: 100%;
 }
 
 .variationDiv {
-  width: 100%;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-direction: row;
-  margin-bottom: 1rem;
-  border-bottom: 2px solid #232323;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0.75rem 1rem;
+  background-color: rgb(243, 243, 243);
+  border-radius: 0.25rem;
+  margin: 0.5rem 0.25rem;
+  color: #131313;
+  border-left: 0.5rem solid rgb(55, 0, 255);
+  animation: dataPopup 0.4s ease-in-out forwards;
 }
 
 @keyframes openModal {
@@ -90,5 +120,16 @@
   to {
     opacity: 0;
     bottom: 5rem;
+  }
+}
+
+@keyframes dataPopup {
+  from {
+    opacity: 0;
+    clip-path: polygon(0 0, 0 0, 0 99%, 0% 100%);
+  }
+  to {
+    opacity: 1;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
   }
 }

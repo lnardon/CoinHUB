@@ -39,7 +39,13 @@ function ModalBase({
             <h1 className={styles.name}>{name}</h1>
             <h2 className={styles.price}>{dataFormatter(price, "currency")}</h2>
           </div>
-          <h2 className={styles.variation}>
+          <h2
+            className={
+              styles.variation +
+              " " +
+              (variation > 0 ? styles.variationUp : styles.variationDown)
+            }
+          >
             {dataFormatter(variation, "percentage")}
           </h2>
         </div>
@@ -62,7 +68,7 @@ function ModalBase({
               <div className={styles.variationDiv} key={p.label}>
                 <h4 className={styles.label}>{p.label}</h4>
                 <h3 className={styles.data}>
-                  {dataFormatter(marketData[p?.data][p?.currency], p.type)}
+                  {dataFormatter(marketData[p?.data], p.type)}
                 </h3>
               </div>
             );
