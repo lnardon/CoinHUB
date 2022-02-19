@@ -1,17 +1,26 @@
+//If data comes as an object of currencies it returns only the usd value
+const getCurrencyData = (data) => {
+  if (typeof data === "object") {
+    return data?.usd;
+  } else {
+    return data;
+  }
+};
+
 export const dataFormatter = (data, type) => {
   switch (type) {
     case "currency":
       const usdFormatter = new Intl.NumberFormat("en-US", {
         style: "currency",
         currency: "USD",
-        // These options are needed to round to whole numbers if that's what you want.
-        //minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
-        //maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
       });
-      return usdFormatter.format(data);
+      return usdFormatter.format(getCurrencyData(data));
 
     case "percentage":
-      return `${data.toFixed(2)}%`;
+      return `${getCurrencyData(data).toFixed(2)}%`;
+
+    case "units":
+      return `${data}`;
     default:
       break;
   }
