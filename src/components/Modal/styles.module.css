@@ -78,6 +78,13 @@
   background-color: red;
 }
 
+.sectionTitle {
+  width: 100%;
+  text-align: left;
+  font-size: 1.5rem;
+  margin: 1rem 0rem;
+}
+
 .prevPricesContainer {
   display: flex;
   align-items: center;

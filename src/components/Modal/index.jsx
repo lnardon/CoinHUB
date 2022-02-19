@@ -50,6 +50,8 @@ function ModalBase({
           </h2>
         </div>
 
+        <h2 className={styles.sectionTitle}>Market Data</h2>
+
         <div className={styles.prevPricesContainer}>
           <div className={styles.variationDiv}>
             <h4 className={styles.label}>24h high</h4>
