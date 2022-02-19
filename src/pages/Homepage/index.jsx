@@ -37,9 +37,12 @@ function Homepage() {
   const handleCoinModal = async (id) => {
     const raw = await fetch(`https://api.coingecko.com/api/v3/coins/${id}`);
     const parsed = await raw.json();
-    console.log(parsed);
     setModalInfo(parsed);
     setOpenModal(true);
+  };
+
+  const closeModal = () => {
+    setOpenModal(false);
   };
 
   return (
@@ -54,16 +57,17 @@ function Homepage() {
 
       {openModal && (
         <Modal
-          name={modalInfo.name}
-          icon={modalInfo.image.small}
+          name={modalInfo?.name}
+          icon={modalInfo?.image?.small}
           isOpen={openModal}
-          closeModal={() => setOpenModal(false)}
-          price={modalInfo.market_data.current_price.usd}
-          variation={modalInfo.market_data.price_change_percentage_24h}
-          coinId={modalInfo.id}
-          lowestPrice={modalInfo.market_data.low_24h.usd}
-          highestPrice={modalInfo.market_data.high_24h.usd}
-          marketData={modalInfo.market_data}
+          closeModal={closeModal}
+          price={modalInfo?.market_data?.current_price?.usd}
+          variation={modalInfo?.market_data?.price_change_percentage_24h}
+          coinId={modalInfo?.id}
+          lowestPrice={modalInfo?.market_data?.low_24h?.usd}
+          highestPrice={modalInfo?.market_data?.high_24h?.usd}
+          marketData={modalInfo?.market_data}
+          totalSupply={modalInfo?.market_data.total_study}
         />
       )}
       <InfiniteScroll pageStart={0} loadMore={fetchCoins} hasMore>
@@ -73,22 +77,21 @@ function Homepage() {
               return (
                 <CoinCard
                   key={index}
-                  icon={coin.image}
-                  name={coin.name}
-                  price={coin.current_price}
-                  variation={coin.price_change_percentage_24h}
-                  coinId={coin.id}
-                  lowestPrice={coin.low_24h}
-                  highestPrice={coin.high_24h}
-                  position={coin.market_cap_rank}
+                  icon={coin?.image}
+                  name={coin?.name}
+                  price={coin?.current_price}
+                  variation={coin?.price_change_percentage_24h}
+                  coinId={coin?.id}
+                  lowestPrice={coin?.low_24h}
+                  highestPrice={coin?.high_24h}
+                  position={coin?.market_cap_rank}
                   openCoinCard={handleCoinModal}
-                  onClick={() => alert("SKRT")}
                 />
               );
             })}
         </div>
-        {isLoading && <img className="loader" src={loader} alt="Loading..." />}
       </InfiniteScroll>
+      {isLoading && <img className="loader" src={loader} alt="Loading..." />}
     </div>
   );
 }
