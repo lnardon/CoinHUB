@@ -124,6 +124,15 @@
   animation: dataPopup 0.4s ease forwards;
 }
 
+.developerData {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
 @keyframes openModal {
   from {
     opacity: 0;

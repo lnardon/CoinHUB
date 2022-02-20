@@ -16,6 +16,11 @@ function ModalBase({
   lowestPrice,
   highestPrice,
   marketData,
+  stars,
+  forks,
+  prMerged,
+  contributors,
+  issues,
   isOpen,
   closeModal,
   rankPosition,
@@ -52,8 +57,8 @@ function ModalBase({
           </h2>
         </div>
 
+        {/* Market data */}
         <h2 className={styles.sectionTitle}>Market Data</h2>
-
         <div className={styles.prevPricesContainer}>
           <div className={styles.variationDiv}>
             <h4 className={styles.label}>24h high</h4>
@@ -77,6 +82,31 @@ function ModalBase({
               </div>
             );
           })}
+        </div>
+
+        {/* Developer data */}
+        <h2 className={styles.sectionTitle}>Developer Data</h2>
+        <div className={styles.developerData}>
+          <div className={styles.variationDiv} key="stars">
+            <h4 className={styles.label}>Stars</h4>
+            <h3 className={styles.data}>{stars}</h3>
+          </div>
+          <div className={styles.variationDiv} key="forks">
+            <h4 className={styles.label}>Forks</h4>
+            <h3 className={styles.data}>{forks}</h3>
+          </div>
+          <div className={styles.variationDiv} key="pr_merged">
+            <h4 className={styles.label}>PR Merged</h4>
+            <h3 className={styles.data}>{prMerged}</h3>
+          </div>
+          <div className={styles.variationDiv} key="contributors">
+            <h4 className={styles.label}>PR Contributors</h4>
+            <h3 className={styles.data}>{contributors}</h3>
+          </div>
+          <div className={styles.variationDiv} key="issues">
+            <h4 className={styles.label}>Total Issues</h4>
+            <h3 className={styles.data}>{issues}</h3>
+          </div>
         </div>
       </div>
     </Modal>

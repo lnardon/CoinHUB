@@ -69,6 +69,11 @@ function Homepage() {
           marketData={modalInfo?.market_data}
           totalSupply={modalInfo?.market_data.total_study}
           rankPosition={modalInfo?.market_cap_rank}
+          stars={modalInfo?.developer_data?.stars}
+          forks={modalInfo?.developer_data?.forks}
+          prMerged={modalInfo?.developer_data?.pull_requests_merged}
+          contributors={modalInfo?.developer_data?.pull_request_contributors}
+          issues={modalInfo?.developer_data?.total_issues}
         />
       )}
       <InfiniteScroll pageStart={0} loadMore={fetchCoins} hasMore>
