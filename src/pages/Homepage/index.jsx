@@ -68,6 +68,7 @@ function Homepage() {
           highestPrice={modalInfo?.market_data?.high_24h?.usd}
           marketData={modalInfo?.market_data}
           totalSupply={modalInfo?.market_data.total_study}
+          rankPosition={modalInfo?.market_cap_rank}
         />
       )}
       <InfiniteScroll pageStart={0} loadMore={fetchCoins} hasMore>

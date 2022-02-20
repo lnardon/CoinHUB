@@ -18,6 +18,7 @@ function ModalBase({
   marketData,
   isOpen,
   closeModal,
+  rankPosition,
 }) {
   return (
     <Modal
@@ -33,6 +34,7 @@ function ModalBase({
           alt="Close"
           onClick={closeModal}
         />
+        <div className={styles.rankPosition}>#{rankPosition}</div>
         <div className={styles.modalHeader}>
           <img className={styles.logo} src={icon} alt="Coin logo" />
           <div className={styles.headerInfo}>
