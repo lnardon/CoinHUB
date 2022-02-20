@@ -25,6 +25,11 @@ export const Properties = [
     type: "percentage",
   },
   {
+    label: "Price change 1 year",
+    data: "price_change_percentage_1y",
+    type: "percentage",
+  },
+  {
     label: "All time high change",
     data: "ath_change_percentage",
     type: "percentage",
