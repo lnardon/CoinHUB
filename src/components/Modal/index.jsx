@@ -9,21 +9,46 @@ import styles from "./styles.module.css";
 Modal.setAppElement("#root");
 
 function ModalBase({
-  name,
-  icon,
-  price,
-  variation,
-  lowestPrice,
-  highestPrice,
-  marketData,
-  stars,
-  forks,
-  prMerged,
-  contributors,
-  issues,
+  name = "",
+  icon = "",
+  price = 0,
+  variation = 0,
+  lowestPrice = 0,
+  highestPrice = 0,
+  rankPosition = 0,
+  marketData = {
+    ath: {
+      usd: 0,
+    },
+    ath_change_percentage: {
+      usd: 0,
+    },
+    atl: {
+      usd: 0,
+    },
+    atl_change_percentage: {
+      usd: 0,
+    },
+    market_cap: {
+      usd: 0,
+    },
+    total_volume: {
+      usd: 0,
+    },
+    price_change_percentage_24h: 0,
+    price_change_percentage_7d: 0,
+    price_change_percentage_30d: 0,
+    price_change_percentage_200d: 0,
+    price_change_percentage_1y: 0,
+    total_supply: 0,
+  },
+  stars = 0,
+  forks = 0,
+  prMerged = 0,
+  contributors = 0,
+  issues = 0,
   isOpen,
   closeModal,
-  rankPosition,
 }) {
   return (
     <Modal
