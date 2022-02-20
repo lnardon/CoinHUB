@@ -165,3 +165,10 @@
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
   }
 }
+
+@media (max-width: 500px) {
+  .prevPricesContainer {
+    align-items: stretch;
+    flex-direction: column;
+  }
+}
