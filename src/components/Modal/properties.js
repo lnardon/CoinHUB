@@ -10,22 +10,22 @@ export const Properties = [
     type: "currency",
   },
   {
-    label: "Price change 7 days",
+    label: "Price change (7days)",
     data: "price_change_percentage_7d",
     type: "percentage",
   },
   {
-    label: "Price change 30 days",
+    label: "Price change (30days)",
     data: "price_change_percentage_30d",
     type: "percentage",
   },
   {
-    label: "Price change 200 days",
+    label: "Price change (200days)",
     data: "price_change_percentage_200d",
     type: "percentage",
   },
   {
-    label: "Price change 1 year",
+    label: "Price change (1year)",
     data: "price_change_percentage_1y",
     type: "percentage",
   },

@@ -108,6 +108,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   width: 100%;
+  margin-bottom: 1rem;
 }
 
 .variationDiv {
@@ -122,6 +123,18 @@
   color: #131313;
   border-left: 0.5rem solid rgb(55, 0, 255);
   animation: dataPopup 0.4s ease forwards;
+}
+
+.label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #666666;
+  margin-bottom: 0.125rem;
+}
+
+.data {
+  font-size: 1.25rem;
+  font-weight: 700;
 }
 
 .developerData {
