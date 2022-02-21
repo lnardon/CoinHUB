@@ -1,10 +1,23 @@
 //If data comes as an object of currencies it returns only the usd value
-const getCurrencyData = (data) => {
+const getCurrencyData = (data, max) => {
+  let newData;
   if (typeof data === "object") {
-    return data?.usd;
+    newData = data?.usd;
   } else {
-    return data;
+    newData = data;
   }
+  return getToFixed(newData, max);
+};
+
+// Limits usd price to only 6 digits after (.)
+const getToFixed = (data, max) => {
+  let aux = (data + "").split(".");
+  if (aux[1]) {
+    return max >= aux[1].length
+      ? data.toFixed(aux[1].length)
+      : data.toFixed(max);
+  }
+  return data;
 };
 
 export const dataFormatter = (data, type) => {
@@ -14,10 +27,14 @@ export const dataFormatter = (data, type) => {
         style: "currency",
         currency: "USD",
       });
-      return usdFormatter.format(getCurrencyData(data));
+      let floatPrice = parseFloat(getCurrencyData(data, 6));
+      if (floatPrice < 0.01) {
+        return `$${floatPrice}`;
+      }
+      return usdFormatter.format(floatPrice);
 
     case "percentage":
-      return `${getCurrencyData(data).toFixed(2)}%`;
+      return `${getCurrencyData(data, 2)}%`;
 
     case "units":
       return `${data}`;
