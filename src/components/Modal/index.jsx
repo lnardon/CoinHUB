@@ -64,8 +64,20 @@ function ModalBase({
           alt="Close"
           onClick={closeModal}
         />
-        <div className={styles.rankPosition}>#{rankPosition}</div>
-        <div className={styles.modalHeader}>
+        <div
+          className={
+            styles.rankPosition +
+            " " +
+            (variation < 0 ? styles.down : styles.up)
+          }
+        >
+          #{rankPosition}
+        </div>
+        <div
+          className={
+            styles.modalHeader + " " + (variation < 0 ? styles.down : styles.up)
+          }
+        >
           <img className={styles.logo} src={icon} alt="Coin logo" />
           <div className={styles.headerInfo}>
             <h1 className={styles.name}>{name}</h1>

@@ -39,8 +39,15 @@
   color: #131313;
   font-size: 1rem;
   font-weight: 600;
-  border-left: 0.5rem solid rgb(221, 33, 0);
   animation: dataPopup 0.4s ease forwards;
+}
+
+.up {
+  border-left: 0.5rem solid #38b236;
+}
+
+.down {
+  border-left: 0.5rem solid red;
 }
 
 .closeBtn {
@@ -65,7 +72,6 @@
   padding: 1rem;
   border-radius: 0.25rem;
   color: #131313;
-  border-left: 0.5rem solid rgb(55, 0, 255);
   animation: dataPopup 0.4s ease forwards;
 }
 

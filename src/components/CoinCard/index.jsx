@@ -39,11 +39,15 @@ function CoinCard({
           <div className={styles.prevPricesContainer}>
             <div className={styles.variationDiv}>
               <h4 className={styles.label}>24h low</h4>
-              <h3 className={styles.data}>{lowestPrice}</h3>
+              <h3 className={styles.data}>
+                {dataFormatter(lowestPrice, "currency")}
+              </h3>
             </div>
             <div className={styles.variationDivRight}>
               <h4 className={styles.label}>24h high</h4>
-              <h3 className={styles.data}>{highestPrice}</h3>
+              <h3 className={styles.data}>
+                {dataFormatter(highestPrice, "currency")}
+              </h3>
             </div>
           </div>
         </div>
