@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Modal from "react-modal";
 import { dataFormatter } from "../../utils/dataFormatter";
 import { Properties } from "./properties";
@@ -50,6 +50,14 @@ function ModalBase({
   isOpen,
   closeModal,
 }) {
+  // Fix bug with react-modal package
+  useEffect(() => {
+    document.body.style.overflowY = "hidden";
+    return () => {
+      document.body.style.overflowY = "scroll";
+    };
+  }, []);
+
   return (
     <Modal
       isOpen={isOpen}
