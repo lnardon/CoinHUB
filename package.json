@@ -13,7 +13,7 @@
     "react-infinite-scroller": "^1.2.4",
     "react-intersection-observer": "^8.32.5",
     "react-modal": "^3.14.4",
-    "react-scripts": "3.4.1"
+    "react-scripts": "^5.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
